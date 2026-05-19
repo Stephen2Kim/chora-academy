@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Stephen2Kim.github.io/chora-academy",
+  "homepage": "https://stephen2kim.github.io/chora-academy",
 
   "scripts": {
     "dev": "vite",

@@ -1,120 +1,115 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import WhyChora from './components/WhyChora'
+import CoursesPreview from './components/CoursesPreview'
+import QuoteStrip from './components/QuoteStrip'
+import Corporate from './components/Corporate'
+import Community from './components/Community'
+import Founder from './components/Founder'
+import DraftingBoard from './components/DraftingBoard'
+import Footer from './components/Footer'
+import AllCourses from './components/AllCourses'
+import OurStory from './components/OurStory'
+import AutoCADCourse from './components/AutoCADCourse'
+import ApplicationForm from './components/ApplicationForm'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [page, setPage] = useState('home')
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
+
+  const openHomePage = () => {
+    setPage('home')
+    scrollTop()
+  }
+
+  const openCoursesPage = () => {
+    setPage('courses')
+    scrollTop()
+  }
+
+  const openStoryPage = () => {
+    setPage('story')
+    scrollTop()
+  }
+
+  const openAutoCADPage = () => {
+    setPage('autocad')
+    scrollTop()
+  }
+
+  const openApplicationPage = () => {
+    setPage('application')
+    scrollTop()
+  }
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <Navbar openHomePage={openHomePage} />
 
-      <div className="ticks"></div>
+      <main>
+        {page === 'home' && (
+          <>
+            <Hero openStoryPage={openStoryPage} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            <WhyChora />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+            <CoursesPreview
+              openCoursesPage={openCoursesPage}
+              openAutoCADPage={openAutoCADPage}
+            />
+
+            <QuoteStrip />
+
+            <Corporate />
+
+            <Community />
+
+            <Founder />
+
+            <DraftingBoard />
+
+            <Footer />
+          </>
+        )}
+
+        {page === 'courses' && (
+          <AllCourses
+            openHomePage={openHomePage}
+            openAutoCADPage={openAutoCADPage}
+          />
+        )}
+
+        {page === 'story' && (
+          <OurStory
+            openHomePage={openHomePage}
+            openCoursesPage={openCoursesPage}
+          />
+        )}
+
+        {page === 'autocad' && (
+          <AutoCADCourse
+            openHomePage={openHomePage}
+            openCoursesPage={openCoursesPage}
+            openApplicationPage={openApplicationPage}
+          />
+        )}
+
+        {page === 'application' && (
+          <ApplicationForm
+            openHomePage={openHomePage}
+            openAutoCADPage={openAutoCADPage}
+          />
+        )}
+
+      </main>
     </>
   )
 }
