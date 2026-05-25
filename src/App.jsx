@@ -14,6 +14,8 @@ import AllCourses from './components/AllCourses'
 import OurStory from './components/OurStory'
 import AutoCADCourse from './components/AutoCADCourse'
 import ApplicationForm from './components/ApplicationForm'
+import CorporateProposal from './components/CorporateProposal'
+import Publications from './components/Publications'
 
 function App() {
   const [page, setPage] = useState('home')
@@ -23,6 +25,21 @@ function App() {
       top: 0,
       behavior: 'smooth',
     })
+  }
+
+  const scrollToSection = (sectionId) => {
+    setPage('home')
+
+    setTimeout(() => {
+      const section = document.getElementById(sectionId)
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    }, 50)
   }
 
   const openHomePage = () => {
@@ -50,9 +67,25 @@ function App() {
     scrollTop()
   }
 
+  const openProposalPage = () => {
+    setPage('proposal')
+    scrollTop()
+  }
+
+  const openPublicationsPage = () => {
+    setPage('publications')
+    scrollTop()
+  }
+
   return (
     <>
-      <Navbar openHomePage={openHomePage} />
+      <Navbar
+        openHomePage={openHomePage}
+        scrollToHomeSection={() => scrollToSection('why-chora')}
+        scrollToCoursesPreview={() => scrollToSection('courses')}
+        scrollToCorporate={() => scrollToSection('corporate')}
+        scrollToCommunity={() => scrollToSection('community')}
+      />
 
       <main>
         {page === 'home' && (
@@ -68,13 +101,16 @@ function App() {
 
             <QuoteStrip />
 
-            <Corporate />
+            <Corporate
+              openProposalPage={openProposalPage}
+              openPublicationsPage={openPublicationsPage}
+            />
 
             <Community />
 
             <Founder />
 
-            <DraftingBoard />
+            <DraftingBoard openPublicationsPage={openPublicationsPage} />
 
             <Footer />
           </>
@@ -109,6 +145,13 @@ function App() {
           />
         )}
 
+        {page === 'proposal' && (
+          <CorporateProposal openHomePage={openHomePage} />
+        )}
+
+        {page === 'publications' && (
+          <Publications openHomePage={openHomePage} />
+        )}
       </main>
     </>
   )

@@ -1,6 +1,6 @@
 function WhyChora() {
   return (
-    <section className="why-section" id="about">
+    <section className="why-section" id="why-chora">
       <div className="container">
         <div className="sec-header">
           <div className="eyebrow">01 — Why Chora</div>

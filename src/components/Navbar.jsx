@@ -1,7 +1,13 @@
-function Navbar() {
+function Navbar({
+  openHomePage,
+  scrollToHomeSection,
+  scrollToCoursesPreview,
+  scrollToCorporate,
+  scrollToCommunity,
+}) {
   return (
     <nav>
-      <a href="#home" className="nav-logo">
+      <button type="button" className="nav-logo nav-button" onClick={openHomePage}>
         <div className="nav-logo-mark">
           <span>C</span>
         </div>
@@ -10,14 +16,38 @@ function Navbar() {
           <div className="nav-name">Chora Academy</div>
           <div className="nav-tag">Engineering Software Canvas</div>
         </div>
-      </a>
+      </button>
 
       <ul className="nav-links">
-        <li><a href="#home" className="active">Home</a></li>
-        <li><a href="#courses">Courses</a></li>
-        <li><a href="#autocad">AutoCAD</a></li>
-        <li><a href="#apply">Apply</a></li>
-        <li><a href="#proposal">Proposal</a></li>
+        <li>
+          <button type="button" className="active" onClick={openHomePage}>
+            Home
+          </button>
+        </li>
+
+        <li>
+          <button type="button" onClick={scrollToHomeSection}>
+            WhyChora
+          </button>
+        </li>
+
+        <li>
+          <button type="button" onClick={scrollToCoursesPreview}>
+            OurCourses
+          </button>
+        </li>
+
+        <li>
+          <button type="button" onClick={scrollToCorporate}>
+            Corporate
+          </button>
+        </li>
+
+        <li>
+          <button type="button" onClick={scrollToCommunity}>
+            Community
+          </button>
+        </li>
       </ul>
 
       <button className="nav-search" aria-label="Search">
@@ -31,6 +61,58 @@ function Navbar() {
           />
         </svg>
       </button>
+
+      <style>{`
+        .nav-button,
+        .nav-links button {
+          background: none;
+          border: none;
+          font-family: inherit;
+          cursor: pointer;
+        }
+
+        .nav-button {
+          padding: 0;
+        }
+
+        .nav-links button {
+          font-family: "Montserrat", sans-serif;
+          font-weight: 600;
+          font-size: 9px;
+          letter-spacing: 2.5px;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.55);
+          text-decoration: none;
+          transition: color 0.2s;
+          position: relative;
+        }
+
+        .nav-links button::after {
+          content: "";
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: var(--gold);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.25s ease;
+        }
+
+        .nav-links button:hover {
+          color: var(--white);
+        }
+
+        .nav-links button:hover::after,
+        .nav-links button.active::after {
+          transform: scaleX(1);
+        }
+
+        .nav-links button.active {
+          color: var(--gold);
+        }
+      `}</style>
     </nav>
   )
 }

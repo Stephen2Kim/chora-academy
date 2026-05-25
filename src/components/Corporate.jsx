@@ -1,4 +1,4 @@
-function Corporate() {
+function Corporate({ openProposalPage, openPublicationsPage }) {
   return (
     <section className="corporate-section" id="corporate">
       <div className="container">
@@ -49,11 +49,15 @@ function Corporate() {
             </p>
 
             <div className="corp-actions">
-              <button type="button" className="btn btn-gold">
+              <button type="button" className="btn btn-gold" onClick={openProposalPage}>
                 Request a Proposal
               </button>
 
-              <button type="button" className="btn btn-outline">
+              <button
+                type="button"
+                className="btn btn-outline"
+                onClick={openPublicationsPage}
+              >
                 Download Brochure
               </button>
             </div>

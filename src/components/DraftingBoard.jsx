@@ -1,4 +1,4 @@
-function DraftingBoard() {
+function DraftingBoard({ openPublicationsPage }) {
   return (
     <section className="cta-banner">
       <div className="cta-inner">
@@ -17,9 +17,13 @@ function DraftingBoard() {
             Start Learning Today
           </a>
 
-          <a href="#brochure" className="btn btn-outline">
+          <button
+            type="button"
+            className="btn btn-outline"
+            onClick={openPublicationsPage}
+          >
             Download Prospectus
-          </a>
+          </button>
         </div>
       </div>
 
